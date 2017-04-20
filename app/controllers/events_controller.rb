@@ -18,5 +18,23 @@ class EventsController < ApplicationController
     @event.save
   end
   
+  def update
+    @event.update(event_params)
+  end
+  
+  def destroy
+    @event.destroy
+  end
+  
+  private
+  
+  def set_event
+    @event = Event.find(params[:id])
+  end
+  
+  def event_params
+    params.require(:event).permit(:title, :date_range, :start, :end, :color)
+  end
+  
   
 end
